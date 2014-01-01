@@ -30,3 +30,18 @@ def sumOfEvens = { limit ->
 assert sumOfEvens(4) == 2
 
 println sumOfEvens(4_000_000)
+
+def fib = {limit ->
+   def fibonacci = [1, 2]
+
+   while (fibonacci.last() < limit) {
+      fibonacci << fibonacci[-2] + fibonacci[-1]
+   }
+
+   return fibonacci
+}
+
+def sum = { f-> f.findAll { it % 2 == 0 }.sum() }
+
+assert 2 == sum(fib(4))
+assert sum(fib(4_000_000)) == sumOfEvens(4_000_000)
